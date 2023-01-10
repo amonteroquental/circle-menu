@@ -350,41 +350,9 @@ open class CircleMenu: UIButton {
     }
 
     @objc func buttonHandler(_ sender: CircleMenuButton) {
-        guard let platform = self.platform else { return }
-
         delegate?.circleMenu?(self, buttonWillSelected: sender, atIndex: sender.tag)
-        
-        let strokeWidth: CGFloat
-        if let radius = self.subButtonsRadius {
-            strokeWidth = radius * 2
-        } else {
-            strokeWidth = bounds.size.height
-        }
 
-        let circle = CircleMenuLoader(radius: CGFloat(distance),
-                                      strokeWidth: strokeWidth,
-                                      platform: platform,
-                                      color: sender.backgroundColor)
-
-        if let container = sender.container { // rotation animation
-            sender.rotationAnimation(container.angleZ + 360, duration: duration)
-            container.superview?.bringSubviewToFront(container)
-        }
-
-        let step = getArcStep()
-        circle.fillAnimation(duration, startAngle: -90 + startAngle + step * Float(sender.tag)) { [weak self] in
-            self?.buttons?.forEach { $0.alpha = 0 }
-        }
-        circle.hideAnimation(0.5, delay: duration) { [weak self] in
-            if self?.platform?.superview != nil { self?.platform?.removeFromSuperview() }
-        }
-
-        hideCenterButton(duration: 0.3)
-        showCenterButton(duration: 0.525, delay: duration)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + duration, execute: {
-            self.delegate?.circleMenu?(self, buttonDidSelected: sender, atIndex: sender.tag)
-        })
+        delegate?.circleMenu?(self, buttonDidSelected: sender, atIndex: sender.tag)
 }
 
     // MARK: animations

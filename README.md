@@ -44,11 +44,7 @@ Just add CircleMenuLib folder to your project.
 or use [CocoaPods](https://cocoapods.org) with Podfile:
 
 ```ruby
-pod 'CircleMenu'
-```
-or [Carthage](https://github.com/Carthage/Carthage) users can simply add to their `Cartfile`:
-```
-github "Ramotion/circle-menu"
+pod 'CircleMenu, :git => 'https://github.com/amonteroquental/circle-menu.git''
 ```
 
 ## Usage
