@@ -44,7 +44,7 @@ Just add CircleMenuLib folder to your project.
 or use [CocoaPods](https://cocoapods.org) with Podfile:
 
 ```ruby
-pod 'CircleMenu, :git => 'https://github.com/amonteroquental/circle-menu.git''
+pod 'CircleMenu', :git => 'https://github.com/amonteroquental/circle-menu.git'
 ```
 
 ## Usage
